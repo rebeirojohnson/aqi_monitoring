@@ -40,6 +40,7 @@ print(value)
 r1 = random_forest_model.score(training_array, output_array) * 100
 r2 = boostreg_model.score(training_array, output_array)*100
 r3 = clf.score(training_array, output_array)*100
+print("test")
 
 print(r3)
 
