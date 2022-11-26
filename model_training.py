@@ -1,49 +1,43 @@
 # importing the libraries
-import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 import os
-from sklearn.impute import SimpleImputer
+from preprocess import training_array, output_array, x_train, x_test, y_train, y_test
 # importing Randomforest
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestRegressor, AdaBoostRegressor
 from sklearn.neural_network import MLPClassifier
 import joblib
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-# loading dataset and storing in train variable
-training_dataset = pd.read_csv('dataset/city_data_val_test.csv')
- 
-# Fill the empty value in 
-imputer = SimpleImputer(missing_values=np.nan,strategy='median')
-training_dataset = imputer.fit_transform(training_dataset) 
-
-
-# separating class label and other attributes
-training_array = np.delete(training_dataset,obj=9, axis=1)
-output_array = training_dataset[:, -1]
-
-
 # creating model
 random_forest_model = RandomForestRegressor()
 boostreg_model = AdaBoostRegressor()
-clf = MLPClassifier(random_state=1, max_iter=300)
-clf.fit(training_array, output_array)
+multi_layer_pre_model = MLPClassifier(random_state=1, max_iter=300)
+knn5 = KNeighborsClassifier(n_neighbors = 5)
+knn1 = KNeighborsClassifier(n_neighbors=1)
 
 # Fitting the model
 random_forest_model.fit(training_array, output_array)
 boostreg_model.fit(training_array, output_array)
+multi_layer_pre_model.fit(training_array, output_array)
+knn5.fit(x_train, y_train)
+knn1.fit(x_train, y_train)
 
-value = clf.predict([[93.57,4.17,41.95,49.48,4.17,110.68,11.5,0.47,0]])
-print(value)
-# printing score
+y_pred_5 = knn5.predict(x_test)
+y_pred_1 = knn1.predict(x_test)
+
+from sklearn.metrics import accuracy_score
+print("Accuracy with k=5", accuracy_score(y_test, y_pred_5)*100)
+print("Accuracy with k=1", accuracy_score(y_test, y_pred_1)*100)
+
+
+# value = multi_layer_pre_model.predict([[93.57,4.17,41.95,49.48,4.17,110.68,11.5,0.47,0]])
+# print(value)
+# # printing score
 r1 = random_forest_model.score(training_array, output_array) * 100
 r2 = boostreg_model.score(training_array, output_array)*100
-r3 = clf.score(training_array, output_array)*100
-print("test")
-
-print(r3)
-
+r3 = multi_layer_pre_model.score(training_array, output_array)*100
 
 joblib.dump(random_forest_model, 'random_forest_model.pkl')
 joblib.dump(boostreg_model, 'boostreg_model.pkl')
