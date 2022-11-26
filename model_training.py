@@ -6,6 +6,7 @@ import os
 from sklearn.impute import SimpleImputer
 # importing Randomforest
 from sklearn.ensemble import RandomForestRegressor, AdaBoostRegressor
+from sklearn.neural_network import MLPClassifier
 import joblib
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -26,15 +27,21 @@ output_array = training_dataset[:, -1]
 # creating model
 random_forest_model = RandomForestRegressor()
 boostreg_model = AdaBoostRegressor()
-
+clf = MLPClassifier(random_state=1, max_iter=300)
+clf.fit(training_array, output_array)
 
 # Fitting the model
 random_forest_model.fit(training_array, output_array)
 boostreg_model.fit(training_array, output_array)
 
+value = clf.predict([[93.57,4.17,41.95,49.48,4.17,110.68,11.5,0.47,0]])
+print(value)
 # printing score
 r1 = random_forest_model.score(training_array, output_array) * 100
 r2 = boostreg_model.score(training_array, output_array)*100
+r3 = clf.score(training_array, output_array)*100
+
+print(r3)
 
 
 joblib.dump(random_forest_model, 'random_forest_model.pkl')
