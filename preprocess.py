@@ -14,6 +14,8 @@ raw_training_dataset = pd.read_csv('dataset/city_data_val_test.csv')
 imputer = SimpleImputer(missing_values=np.nan,strategy='median')
 training_dataset = imputer.fit_transform(raw_training_dataset) 
 
+
+
 # separating class label and other attributes
 training_array = np.delete(training_dataset,obj=9, axis=1)
 output_array = training_dataset[:, -1]
