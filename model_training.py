@@ -19,34 +19,44 @@ knn5 = KNeighborsClassifier(n_neighbors = 5)
 knn1 = KNeighborsClassifier(n_neighbors=1)
 mlr_model = LinearRegression()
 
-
 # Fitting the model
-# .fit(training_df,output_df)
-random_forest_model.fit(training_array, output_array)
-boostreg_model.fit(training_array, output_array)
-multi_layer_pre_model.fit(training_array, output_array)
-knn5.fit(x_train, y_train)
-knn1.fit(x_train, y_train)
-
-y_pred_5 = knn5.predict(x_test)
-y_pred_1 = knn1.predict(x_test)
-
 from sklearn.metrics import accuracy_score
-print("Accuracy with k=5", accuracy_score(y_test, y_pred_5)*100)
-print("Accuracy with k=1", accuracy_score(y_test, y_pred_1)*100)
 
-
-value = multi_layer_pre_model.predict([[93.57,4.17,41.95,49.48,4.17,110.68,11.5,0.47,0]])
-print(value)
-# printing score
-r1 = random_forest_model.score(training_array, output_array) * 100
-r2 = boostreg_model.score(training_array, output_array)*100
-# r3 = multi_layer_pre_model.score(training_array, output_array)*100
-
+# print("Random forest started")
+# random_forest_model.fit(x_train, y_test)
 # joblib.dump(random_forest_model, 'random_forest_model.pkl')
-joblib.dump(mlr_model, 'mlr_model.pkl')
-# joblib.dump(boostreg_model, 'boostreg_model.pkl')
-# joblib.dump(multi_layer_pre_model, 'multi_layer_pre_model.pkl')
-# joblib.dump(knn1, 'knn1.pkl')
-# joblib.dump(knn5, 'knn5.pkl')
+# print("Random forest finished")
 
+# print("boostreg started")
+# boostreg_model.fit(x_train, y_train)
+# joblib.dump(boostreg_model, 'boostreg_model.pkl')
+# print("boostreg finished")
+
+print("mepc started")
+multi_layer_pre_model.fit(x_train,y_train)
+joblib.dump(multi_layer_pre_model,'multi_layer_pre_model.pkl')
+print("mrpc finish")
+
+print("mlr model started")
+mlr_model.fit(x_train, output_array)
+joblib.dump(mlr_model, 'mlr_model.pkl')
+print("mlr model finished")
+
+# print("knn5 started")
+# knn1.fit(x_train, y_train)
+# joblib.dump(knn1, 'knn1.pkl')
+# print("knn1 finished")
+
+# print("knn5 started")
+# knn5.fit(x_train, y_train)
+# joblib.dump(knn5, 'knn5.pkl')
+# print("knn5 finished")
+
+# r1 = random_forest_model.score(training_array, output_array) * 100
+# r2 = boostreg_model.score(training_array, output_array)*100
+# r3 = multi_layer_pre_model.score(training_array, output_array)*100
+# y_pred_1 = knn1.predict(x_test)
+# y_pred_5 = knn5.predict(x_test)
+
+# print("Accuracy with k=5", accuracy_score(y_test, y_pred_5)*100)
+# print("Accuracy with k=1", accuracy_score(y_test, y_pred_1)*100)
