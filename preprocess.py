@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # loading dataset and storing in train variable
-raw_training_dataset = pd.read_csv('dataset/city_data_val.csv')
+raw_training_dataset = pd.read_csv('dataset/filtered_city_data_val.csv')
  
 # Fill the empty value in 
 imputer = SimpleImputer(missing_values=np.nan,strategy='median')
