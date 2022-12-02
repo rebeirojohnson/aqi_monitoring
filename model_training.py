@@ -23,12 +23,12 @@ mlr_model = LinearRegression()
 from sklearn.metrics import accuracy_score
 
 print("Random forest started")
-random_forest_model.fit(x_train, y_test)
+random_forest_model.fit(x_train, y_train)
 joblib.dump(random_forest_model, 'random_forest_model.pkl')
 print("Random forest finished")
 
 print("boostreg started")
-boostreg_model.fit(x_train, y_train)
+boostreg_model.fit(x_train,y_train)
 joblib.dump(boostreg_model, 'boostreg_model.pkl')
 print("boostreg finished")
 

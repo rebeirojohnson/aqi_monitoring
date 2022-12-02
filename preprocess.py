@@ -17,7 +17,7 @@ training_dataset = imputer.fit_transform(raw_training_dataset)
 
 
 # separating class label and other attributes
-training_array = np.delete(training_dataset,obj=9, axis=1)
+training_array = np.delete(training_dataset,obj=7, axis=1)
 output_array = training_dataset[:, -1]
 
 x_train, x_test, y_train, y_test = train_test_split(training_array, output_array, random_state = 0)
