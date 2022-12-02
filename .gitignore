@@ -1,6 +1,5 @@
 .venv
 **.pkl
-**.csv
 !dataset/city_data_val_test.csv
 !dataset/city_data_val.csv
 __pycache__
