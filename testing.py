@@ -4,9 +4,9 @@ from preprocess import x_test,y_test
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-random_forest_model = joblib.load('random_forest_model.pkl')
-boostreg_model = joblib.load('boostreg_model.pkl')
-mlr_model = joblib.load('mlr_model.pkl')
+random_forest_model = joblib.load('pkl_file/random_forest_model.pkl')
+boostreg_model = joblib.load('pkl_file/boostreg_model.pkl')
+mlr_model = joblib.load('pkl_file/mlr_model.pkl')
 # 667
 
 val1 = random_forest_model.predict([[61.13,0.43,14.07,12.9,0.43,34.47,106.88]])

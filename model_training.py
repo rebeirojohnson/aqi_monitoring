@@ -22,42 +22,40 @@ mlr_model = LinearRegression()
 # Fitting the model
 from sklearn.metrics import accuracy_score
 
-# print("Random forest started")
-# random_forest_model.fit(x_train, y_train)
-# joblib.dump(random_forest_model, 'random_forest_model.pkl')
-# print("Random forest finished")
+print("Random forest started")
+random_forest_model.fit(x_train, y_train)
+joblib.dump(random_forest_model, 'pkl_file/random_forest_model.pkl')
+print("Random forest finished")
 
-# print("boostreg started")
-# boostreg_model.fit(x_train,y_train)
-# joblib.dump(boostreg_model, 'boostreg_model.pkl')
-# print("boostreg finished")
+print("boostreg started")
+boostreg_model.fit(x_train,y_train)
+joblib.dump(boostreg_model, 'pkl_file/boostreg_model.pkl')
+print("boostreg finished")
 
-""" 
+
 print("mepc started")
 multi_layer_pre_model.fit(x_train,y_train)
-joblib.dump(multi_layer_pre_model,'multi_layer_pre_model.pkl')
+joblib.dump(multi_layer_pre_model,'pkl_file/multi_layer_pre_model.pkl')
 print("mrpc finish")
-"""
+
 print("mlr model started")
 mlr_model.fit(x_train, y_train)
-joblib.dump(mlr_model, 'mlr_model.pkl')
+joblib.dump(mlr_model, 'pkl_file/mlr_model.pkl')
 print("mlr model finished")
 
 print("knn1 started")
 knn1.fit(x_train, y_train)
-joblib.dump(knn1, 'knn1.pkl')
+joblib.dump(knn1, 'pkl_file/knn1.pkl')
 print("knn1 finished")
 
 print("knn5 started")
 knn5.fit(x_train, y_train)
-joblib.dump(knn5, 'knn5.pkl')
+joblib.dump(knn5, 'pkl_file/knn5.pkl')
 print("knn5 finished")
 
 
 y_pred_1 = knn1.predict(x_test)
-y_pred_5 = knn5.predict(x_test)
-
-print("Accuracy with k=5", accuracy_score(y_test, y_pred_5)*100)
 print("Accuracy with k=1", accuracy_score(y_test, y_pred_1)*100)
-"""
-"""
+
+y_pred_5 = knn5.predict(x_test)
+print("Accuracy with k=5", accuracy_score(y_test, y_pred_5)*100)
