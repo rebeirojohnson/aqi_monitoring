@@ -32,6 +32,12 @@ def taskList(request):
 # 	serializer = TaskSerializer(tasks, many=False)
 # 	return Response(serializer.data)
 
+@api_view(['POST'])
+def taskDetail(request):
+	data = request.data
+	print(data)
+	return Response("Sucessfully posted")
+
 
 @api_view(['POST'])
 def taskCreate(request):
