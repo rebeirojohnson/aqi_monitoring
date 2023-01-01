@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-
+import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import TaskSerializer
@@ -45,17 +45,19 @@ def taskCreate(request):
 	if serializer.is_valid():
 		serializer.save()
 
+	# return Response(serializer.data)
+	return Response("Sucess")
+
+@api_view(['Get'])
+def taskUpdate(request, data):
+	# http://127.0.0.1:8000/api/task-update/%7B%22Name%22:%22API%22,%22AQI%22:980.0%7D/
+	res = json.loads(data)
+	serializer = TaskSerializer(data=res)
+	if serializer.is_valid():
+		serializer.save()
+
 	return Response(serializer.data)
-
-# @api_view(['POST'])
-# def taskUpdate(request, pk):
-# 	task = Task.objects.get(id=pk)
-# 	serializer = TaskSerializer(instance=task, data=request.data)
-
-# 	if serializer.is_valid():
-# 		serializer.save()
-
-# 	return Response(serializer.data)
+	return Response("Data added successfully")
 
 
 # @api_view(['DELETE'])
