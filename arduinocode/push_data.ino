@@ -4,8 +4,8 @@
 #define SERVER_IP "192.168.203.239:8000"
 
 #ifndef STASSID
-#define STASSID "mmmmm"
-#define STAPSK  "00000000"
+#define STASSID "johnson"
+#define STAPSK  "88888888"
 #endif
 String data;
 
@@ -42,8 +42,8 @@ void loop() {
     HTTPClient http;
 
     Serial.print("[HTTP] begin...\n");
-    // configure traged server and url
-    http.begin(client, "http://" SERVER_IP "/api/task-create/"); //HTTP
+    // configure traged server a  nd url
+    http.begin(client, "http://" SERVER_IP "/api/create/"+data); //HTTP
     http.addHeader("Content-Type", "application/json");
 
     Serial.print("[HTTP] POST...\n");

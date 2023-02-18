@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -60,12 +60,20 @@ def taskUpdate(request, data):
 	return Response("Data added successfully")
 
 
-# @api_view(['DELETE'])
-# def taskDelete(request, pk):
-# 	task = Task.objects.get(id=pk)
-# 	task.delete()
+@api_view(['POST'])
+def taskDelete(request):
+	data = request.data
+	print(data)
 
-# 	return Response('Item succsesfully delete!')
+	return Response('Item succsesfully delete!')
+
+# @api_view(['GET'])
+def create(request):
+	# print(data)
+	print("hello")
+	return HttpResponse('Item succsesfully delete!')
+
+	
 
 
 

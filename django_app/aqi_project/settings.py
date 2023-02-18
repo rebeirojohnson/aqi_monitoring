@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'aqi_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'stock_db',
+        'NAME': 'test_db',
         'USER': 'johnson',
-        'PASSWORD': '3fQe8kKtn06JYZFKwxXY2WDWrHdK6yhD',
-        'HOST': 'dpg-cdodkspa6gdooi06h5bg-a.singapore-postgres.render.com',
+        'PASSWORD': '        ',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }

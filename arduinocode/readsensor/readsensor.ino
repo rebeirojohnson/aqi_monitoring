@@ -9,7 +9,7 @@ void setup()
   // mq -135 Ammonia (NH3), sulfur (S), Benzene (C6H6), CO2, and other harmful gases and smoke.
   // mq - 6 LPG, iso-butane, propane 
   
- Serial.begin(9600);        //Begin the Serial Communcation at Baud Rate of 9600
+ Serial.begin(115200);        //Begin the Serial Communcation at Baud Rate of 9600
 
  //Declare the pinmode for all the sensors
  pinMode(A1, INPUT);
@@ -27,10 +27,10 @@ void loop(){
   float Sulfur = analogRead(A4);
   float butane = analogRead(A5);
   
-  String data = "{ch4:"+String(CH4)+",Coal:"+String(Coal)+",CO:"+String(CO)+",Sulfur:"+String(Sulfur)+",butane:"+String(butane)+"}";
+  String data = "{\"ch4\":\""+String(CH4)+"\",\"Coal\":\""+String(Coal)+"\",\"CO\":\""+String(CO)+"\",\"Sulfur\":\""+String(Sulfur)+"\",\"butane\":\""+String(butane)+"\"}";
   Serial.println(data);     
   rememberTime=millis();// remember Current millis() time
 
-  }
+ }
 }
 
