@@ -3,9 +3,9 @@ from django.http import JsonResponse,HttpResponse
 import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import TaskSerializer
+from .serializers import Livedataserializer
 
-from .models import Weather,Testing
+from .models import *
 # Create your views here.
 
 @api_view(['GET'])
@@ -21,9 +21,9 @@ def apiOverview(request):
 	return Response(api_urls)
 
 @api_view(['GET'])
-def taskList(request):
-	tasks = Testing.objects.all().order_by('id')
-	serializer = TaskSerializer(tasks, many=True)
+def livedataview(request):
+	tasks = live_data.objects.all().order_by('-creation_time')
+	serializer = Livedataserializer(tasks, many=True)
 	return Response(serializer.data)
 
 # @api_view(['GET'])
@@ -41,11 +41,13 @@ def taskDetail(request):
 
 @api_view(['POST'])
 def taskCreate(request):
-	serializer = TaskSerializer(data=request.data)
+	serializer = Livedataserializer(data=request.data)
 	if serializer.is_valid():
+		print("valid")
 		serializer.save()
-
-	# return Response(serializer.data)
+	else:
+		print(serializer.errors)
+		print("invalid")
 	return Response("Sucess")
 
 @api_view(['Get'])
@@ -67,12 +69,16 @@ def taskDelete(request):
 
 	return Response('Item succsesfully delete!')
 
-# @api_view(['GET'])
+@api_view(['POST'])
 def create(request):
-	# print(data)
-	print("hello")
-	return HttpResponse('Item succsesfully delete!')
+	data = request.data
+	print(data)
+	return HttpResponse('Added item')
 
+@api_view(['GET'])
+def view(request):
+	dummy = {"data":[{'name':'Johnson','id':'4dm19ec036'},{'name':'Vaibhav','id':'4dm19ec047'},{'name':'Manju','id':'4dm19ec018'},{'name':'Test','id':'4dm19ec420'}]}
+	return JsonResponse(dummy)
 	
 
 

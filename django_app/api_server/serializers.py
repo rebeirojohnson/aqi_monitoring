@@ -1,11 +1,7 @@
 from rest_framework import serializers
-from .models import Weather,Testing
+from .models import *
 
-class TaskSerializer(serializers.ModelSerializer):
-    # class Meta:
-    #     model = Weather
-    #     fields ='__all__'
-    
+class Livedataserializer(serializers.ModelSerializer):
     class Meta:
-        model = Testing
+        model = live_data
         fields ='__all__'
