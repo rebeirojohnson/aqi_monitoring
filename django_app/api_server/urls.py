@@ -11,5 +11,6 @@ urlpatterns = [
 	path('task-update/<str:data>/', views.taskUpdate, name="task-update"),
 	path('delete/', views.taskDelete, name="delete"),
 	path('create/', views.create, name="create"),
-	path('view/', views.view, name="view"),
+	path('student-list/', views.student_list, name="student_list"),
+	path('add-attendance/', views.add_attendence, name="student_list"),
 ]

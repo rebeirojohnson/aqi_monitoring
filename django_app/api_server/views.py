@@ -3,7 +3,8 @@ from django.http import JsonResponse,HttpResponse
 import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import Livedataserializer
+from .serializers import *
+from .db_con import processQuery,engine
 
 from .models import *
 # Create your views here.
@@ -59,7 +60,6 @@ def taskUpdate(request, data):
 		serializer.save()
 
 	return Response(serializer.data)
-	return Response("Data added successfully")
 
 
 @api_view(['POST'])
@@ -76,9 +76,34 @@ def create(request):
 	return HttpResponse('Added item')
 
 @api_view(['GET'])
-def view(request):
-	dummy = {"data":[{'name':'Johnson','id':'4dm19ec036'},{'name':'Vaibhav','id':'4dm19ec047'},{'name':'Manju','id':'4dm19ec018'},{'name':'Test','id':'4dm19ec420'}]}
-	return JsonResponse(dummy)
+def student_list(request):
+	dummy = Student_details.objects.all()
+	serializer = Studentdetailsserializer(dummy, many=True)
+	return Response(serializer.data)
+
+@api_view(['POST'])
+def add_attendence(request):
+	data = request.data
+	tag_id=data['tagid']
+	query = f"SELECT sd.usn,sd.name FROM public.api_server_student_details as sd  where student_id = '{tag_id}'"
+	df = processQuery(query)
+	if df.empty:
+		return Response("Invalid card")
+	
+	usn  = df['usn'][0]
+	name  = df['name'][0]
+	json_string = '{"usn":"'+usn+'"}'
+	json_string = json.loads(json_string)
+	serializer = Attendance_serializer(data=json_string)
+	if serializer.is_valid():
+		print("valid")
+		serializer.save()
+		return Response(name)
+	else:
+		print(serializer.errors)
+		print("invalid")
+		return Response("Invalid card")
+
 	
 
 

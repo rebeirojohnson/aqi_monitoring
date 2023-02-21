@@ -29,14 +29,14 @@ class live_data(models.Model):
     
 class Student_details(models.Model):
     student_id = models.CharField(max_length=8,primary_key=True)
-    Name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
     usn = models.CharField(max_length=10)
     phonenum = models.IntegerField()
 
     def __str__(self):
-        return self.title
+        return self.usn
     
 class Attendance_details(models.Model):
     sl_no = models.BigAutoField(primary_key=True)
-    student_id = models.CharField(max_length=8)
+    usn = models.CharField(max_length=10,default=None)
     attendence_time = models.DateTimeField(auto_now=True)
