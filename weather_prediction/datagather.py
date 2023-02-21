@@ -7,7 +7,3 @@ print(df.isna().sum())
 df2 = df.dropna(thresh=7)
 
 print(df2.isna().sum())
-
-df2.to_csv("dataset/horly_data_to_be_use2.csv")
-
-
