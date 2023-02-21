@@ -2,7 +2,7 @@
 import os
 from preprocess import x_train, x_test, y_train, y_test
 # importing Randomforest
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression,Lasso,Ridge
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestRegressor, AdaBoostRegressor
 from sklearn.neural_network import MLPClassifier
@@ -22,6 +22,8 @@ mlr_model = LinearRegression()
 svr_rbf = SVR(kernel="rbf", C=100, gamma=0.1, epsilon=0.1)
 svr_lin = SVR(kernel="linear", C=100, gamma="auto")
 svr_poly = SVR(kernel="poly", C=100, gamma="auto", degree=3, epsilon=0.1, coef0=1)
+lasso_model = Lasso(alpha=0.1)
+ridge_model = Ridge(alpha=1)
 
 # Fitting the model
 from sklearn.metrics import accuracy_score
@@ -36,10 +38,10 @@ boostreg_model.fit(x_train,y_train)
 joblib.dump(boostreg_model,'../pkl_file/boostreg_model.pkl')
 print("boostreg finished")
 
-print("mepc started")
-multi_layer_pre_model.fit(x_train,y_train)
-joblib.dump(multi_layer_pre_model,'../pkl_file/multi_layer_pre_model.pkl')
-print("mrpc finish")
+# print("mepc started")
+# multi_layer_pre_model.fit(x_train,y_train)
+# joblib.dump(multi_layer_pre_model,'../pkl_file/multi_layer_pre_model.pkl')
+# print("mrpc finish")
 
 print("mlr model started")
 mlr_model.fit(x_train, y_train)
@@ -66,9 +68,19 @@ svr_lin.fit(x_train, y_train)
 joblib.dump(svr_rbf, '../pkl_file/svmlin.pkl')
 print("SVM finished")
 
-print("SVR started")
-svr_poly.fit(x_train, y_train)  
-joblib.dump(svr_rbf, '../pkl_file/svmpoly.pkl')
-print("SVM finished")
+print("Lasso started")
+lasso_model.fit(x_train, y_train)  
+joblib.dump(lasso_model, '../pkl_file/lasso_model.pkl')
+print("laso finished")
+
+print("Ridge started")
+ridge_model.fit(x_train, y_train)  
+joblib.dump(ridge_model, '../pkl_file/ridge_model.pkl')
+print("ridge_model finished")
+
+# print("SVR started")
+# svr_poly.fit(x_train, y_train)  
+# joblib.dump(svr_rbf, '../pkl_file/svmpoly.pkl')
+# print("SVM finished")
 
 
