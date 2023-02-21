@@ -17,11 +17,11 @@ y = raw_training_dataset.iloc[:,-1].values
 
 imputer = SimpleImputer(missing_values=np.nan,strategy='median')
 training_dataset = imputer.fit_transform(x) 
-# training_dataset = scale.fit_transform(training_dataset)
-# print("Scale")
+training_dataset = scale.fit_transform(training_dataset)
+print("Scale")
 
-print("No Scale")
-x_train, x_test, y_train, y_test = train_test_split(training_dataset,y,test_size=0.2,random_state=42)
+# print("No Scale")
+x_train, x_test, y_train, y_test = train_test_split(training_dataset,y,test_size=0.2,random_state=0)
 
 
 
