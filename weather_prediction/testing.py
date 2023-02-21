@@ -12,7 +12,9 @@ mlr_model = joblib.load('../pkl_file/mlr_model.pkl')
 mpec_model = joblib.load('../pkl_file/multi_layer_pre_model.pkl')
 knn1_model = joblib.load('../pkl_file/knn1.pkl')
 knn5_model = joblib.load('../pkl_file/knn5.pkl')
-svm_model = joblib.load('../pkl_file/svm.pkl')
+svmrbf_model = joblib.load('../pkl_file/svmrbf.pkl')
+svmlin_model = joblib.load('../pkl_file/svmlin.pkl')
+svmpoly_model = joblib.load('../pkl_file/svmpoly.pkl')
 
 val1 = random_forest_model.predict([[45.26,2.62,20.09,14.04,19.67,29.04,1.1,25.26]])
 print(val1)
@@ -54,22 +56,33 @@ print(accuracy_score(y_test,y_pred)*100)
 
 
 y_pred = knn5_model.predict(x_test)
+# print(y_pred)
+# print(y_test)
 print("Knn5")
 print(r2_score(y_test,y_pred))
-print(accuracy_score(y_test,y_pred)*100)
-print('y_test               y_pred')
-plt.scatter(x_test[:,1],y_test,c='red',label='original test values')
-plt.scatter(x_test[:,1],y_pred,c='blue',label='predicted  values')
-plt.xlabel('Admin')
-plt.ylabel('AQI')
-plt.legend()
-plt.show()
-print(np.append(arr=y_test.reshape(len(y_test),1),
-                values=y_pred.reshape(len(y_pred),1),axis=1))
+# print("Knn5")
+# print(accuracy_score(y_test,y_pred)*100)
+# print('y_test               y_pred')
+# plt.scatter(x_test[:,1],y_test,c='red',label='original test values')
+# plt.scatter(x_test[:,1],y_pred,c='blue',label='predicted  values')
+# plt.xlabel('Admin')
+# plt.ylabel('AQI')
+# plt.legend()
+# plt.show()
+# print(np.append(arr=y_test.reshape(len(y_test),1),
+#                 values=y_pred.reshape(len(y_pred),1),axis=1))
 
-# y_pred = svm_model.predict(x_test)
-# print("Svm")
-# print(r2_score(y_test,y_pred))
+y_pred = svmrbf_model.predict(x_test)
+print("Svmrbf")
+print(r2_score(y_test,y_pred))
+
+y_pred = svmpoly_model.predict(x_test)
+print("Svmpoly")
+print(r2_score(y_test,y_pred))
+
+y_pred = svmlin_model.predict(x_test)
+print("Svmliin")
+print(r2_score(y_test,y_pred))
 
 
 

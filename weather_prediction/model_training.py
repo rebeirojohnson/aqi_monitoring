@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestRegressor, AdaBoostRegressor
 from sklearn.neural_network import MLPClassifier
-from sklearn.svm import SVC # "Support vector classifier"  
+from sklearn.svm import SVR # "Support vector classifier"  
 
 import joblib
 
@@ -15,14 +15,14 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # creating model
 random_forest_model = RandomForestRegressor(n_estimators=9, random_state=0)
 boostreg_model = AdaBoostRegressor()
-multi_layer_pre_model = MLPClassifier(random_state=1, max_iter=300)
+multi_layer_pre_model = MLPClassifier(random_state=1, max_iter=200)
 knn5 = KNeighborsClassifier(n_neighbors = 5)
 knn1 = KNeighborsClassifier(n_neighbors=1)
 mlr_model = LinearRegression()
-svm = SVC(kernel='rbf', random_state=0)  
+svr_rbf = SVR(kernel="rbf", C=100, gamma=0.1, epsilon=0.1)
+svr_lin = SVR(kernel="linear", C=100, gamma="auto")
+svr_poly = SVR(kernel="poly", C=100, gamma="auto", degree=3, epsilon=0.1, coef0=1)
 
-
-print(x_train)
 # Fitting the model
 from sklearn.metrics import accuracy_score
 
@@ -36,10 +36,10 @@ boostreg_model.fit(x_train,y_train)
 joblib.dump(boostreg_model,'../pkl_file/boostreg_model.pkl')
 print("boostreg finished")
 
-# print("mepc started")
-# multi_layer_pre_model.fit(x_train,y_train)
-# joblib.dump(multi_layer_pre_model,'../pkl_file/multi_layer_pre_model.pkl')
-# print("mrpc finish")
+print("mepc started")
+multi_layer_pre_model.fit(x_train,y_train)
+joblib.dump(multi_layer_pre_model,'../pkl_file/multi_layer_pre_model.pkl')
+print("mrpc finish")
 
 print("mlr model started")
 mlr_model.fit(x_train, y_train)
@@ -56,8 +56,19 @@ knn5.fit(x_train, y_train)
 joblib.dump(knn5, '../pkl_file/knn5.pkl')
 print("knn5 finished")
 
-print("SVM started")
-svm.fit(x_train, y_train)  
-joblib.dump(svm, '../pkl_file/svm.pkl')
+print("SVR started")
+svr_rbf.fit(x_train, y_train)  
+joblib.dump(svr_rbf, '../pkl_file/svmrbf.pkl')
 print("SVM finished")
+
+print("SVR started")
+svr_lin.fit(x_train, y_train)  
+joblib.dump(svr_rbf, '../pkl_file/svmlin.pkl')
+print("SVM finished")
+
+print("SVR started")
+svr_poly.fit(x_train, y_train)  
+joblib.dump(svr_rbf, '../pkl_file/svmpoly.pkl')
+print("SVM finished")
+
 
