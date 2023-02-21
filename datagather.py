@@ -1,16 +1,13 @@
 import pandas as pd
 
-df = pd.read_csv("dataset/hourly_data.csv")
+df = pd.read_csv("dataset/horly_data_to_be_used.csv")
 
 df2 = df.dropna(thresh=3)
 
-df3 = df2.loc[df2['AQI'].notnull()]
+print(df2.isna().sum())
 
-print(df3.isna().sum())
+df2 = df2.dropna(thresh=7)
 
-df3 = df3.dropna(thresh=3)
+df.to_csv("dataset/horly_data_to_be_used.csv")
 
-print(df3.isna().sum())
-
-print(df3)
 
