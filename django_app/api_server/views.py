@@ -105,6 +105,18 @@ def add_attendence(request):
 		return Response("Invalid card")
 
 	
+@api_view(['GET'])
+def getdata(request,date):
+	print(date)
+	# date = data['date_time']
+	weather={
+		"aqi":"85"
+	}
+	return Response(weather)
+
+@api_view(['GET'])
+def verify(request):
+	return Response("2")
 
 
 

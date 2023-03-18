@@ -13,4 +13,6 @@ urlpatterns = [
 	path('create/', views.create, name="create"),
 	path('student-list/', views.student_list, name="student_list"),
 	path('add-attendance/', views.add_attendence, name="student_list"),
+	path('get-weather/<str:date>/', views.getdata, name="getdata"),
+	path('verify/', views.verify, name="verify"),
 ]
