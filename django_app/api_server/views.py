@@ -6,8 +6,9 @@ from rest_framework.response import Response
 from .serializers import *
 from .db_con import processQuery,engine
 import requests as req
-
+from bs4 import BeautifulSoup
 from .models import *
+import json
 # Create your views here.
 
 @api_view(['GET'])
@@ -118,7 +119,10 @@ def getdata(request,date):
 @api_view(['GET'])
 def verify(request):
 	result = req.get(url="https://api.weatherapi.com/v1/current.json?key=971d434f39f1440d8be142810231803&q=13.08,74.98%20&aqi=nohttp://api.weatherapi.com/v1/current.json?key=971d434f39f1440d8be142810231803&q=mudbidri%20&aqi=no")
-	print(result.content)
+	# soup = BeautifulSoup(result.content, 'lxml')
+	# text_json = soup.text
+	# data = json.loads(text_json)
+	print(json.loads(result.content))
 	data = {
     "name": "Mudbidri",
     "temperature": '27',
