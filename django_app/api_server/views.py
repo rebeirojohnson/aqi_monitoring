@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import *
 from .db_con import processQuery,engine
+import requests as req
 
 from .models import *
 # Create your views here.
@@ -116,7 +117,15 @@ def getdata(request,date):
 
 @api_view(['GET'])
 def verify(request):
-	return Response("2")
+	result = req.get(url="https://api.weatherapi.com/v1/current.json?key=971d434f39f1440d8be142810231803&q=13.08,74.98%20&aqi=nohttp://api.weatherapi.com/v1/current.json?key=971d434f39f1440d8be142810231803&q=mudbidri%20&aqi=no")
+	print(result.content)
+	data = {
+    "name": "Mudbidri",
+    "temperature": '27',
+    "icon": "image1.png",
+    "text": "Partly cloudy"
+  }
+	return JsonResponse(data)
 
 
 
