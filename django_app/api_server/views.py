@@ -122,12 +122,26 @@ def verify(request):
 	# soup = BeautifulSoup(result.content, 'lxml')
 	# text_json = soup.text
 	# data = json.loads(text_json)
-	print(json.loads(result.content))
+	weather_data = json.loads(result.content)
+
+	name = weather_data['location']
+	place = name['name']
+
+	current_weather = weather_data['current']
+
+	temp_c = current_weather['temp_c']
+	condition = current_weather['condition']
+
+	text= condition['text']
+
+	icon= condition['icon']
+
+
 	data = {
-    "name": "Mudbidri",
-    "temperature": '27',
-    "icon": "image1.png",
-    "text": "Partly cloudy"
+    "name": place,
+    "temperature": temp_c,
+    "icon": icon,
+    "text": text
   }
 	return JsonResponse(data)
 
