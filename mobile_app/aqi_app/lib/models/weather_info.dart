@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class WeatherInfo {
   final String name;
   final String country;
@@ -16,4 +18,6 @@ class WeatherInfo {
     required this.cond,
     required this.wind_dir,
   });
+
+  void add() {}
 }

@@ -39,12 +39,11 @@ class _UiPageState extends State<UiPage> {
         wind_dir: responseData['current']['wind_dir'],
       );
 
-      print('1 ' + weaDatas.name);
       name = weaDatas.name;
       country = weaDatas.country;
       temp_c = weaDatas.temp_c;
       iconImage = 'http:${weaDatas.iconImage}';
-      print(iconImage.toString());
+
       humidity = weaDatas.humidity;
       cond = weaDatas.cond;
       wind_dir = weaDatas.wind_dir;

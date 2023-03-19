@@ -38,12 +38,12 @@ class _RadialGaugeState extends State<RadialGauge> {
                   startValue: 300,
                   endValue: 500,
                   color: const Color.fromARGB(255, 171, 78, 78)),
-            ], pointers: <GaugePointer>[
+            ], pointers: const <GaugePointer>[
               NeedlePointer(value: 70)
             ], annotations: <GaugeAnnotation>[
               GaugeAnnotation(
                   widget: Container(
-                      child: Text('70.0',
+                      child: const Text('70.0',
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold))),
                   angle: 90,

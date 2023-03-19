@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print(e.toString());
       showDialog(
           context: context,
-          builder: (_) => AlertDialog(
+          builder: (_) => const AlertDialog(
                 content: Text('Please verify address'),
               ));
     }

@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import './view/location_screens.dart';
 import './models/weahter_data.dart';
-
-import './screens/radialgauge.dart';
-import 'testpage.dart';
 import './screens/ui_page.dart';
 
 void main() {
