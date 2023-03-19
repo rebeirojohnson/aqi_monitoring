@@ -18,6 +18,4 @@ class WeatherInfo {
     required this.cond,
     required this.wind_dir,
   });
-
-  void add() {}
 }
