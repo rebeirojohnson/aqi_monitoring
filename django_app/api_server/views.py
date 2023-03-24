@@ -4,7 +4,7 @@ import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import *
-from .db_con import processQuery,engine
+# from .db_con import processQuery,engine
 import requests as req
 from bs4 import BeautifulSoup
 from .models import *
@@ -128,6 +128,7 @@ def verify(request):
 	place = name['name']
 
 	current_weather = weather_data['current']
+	humidity = current_weather['humidity']
 
 	temp_c = current_weather['temp_c']
 	condition = current_weather['condition']
@@ -141,9 +142,11 @@ def verify(request):
     "name": place,
     "temperature": temp_c,
     "icon": icon,
-    "text": text
+    "text": text,
+    "humidity":humidity,
   }
-	return JsonResponse(data)
+	return Response(f"name:{place}")
+	# return JsonResponse(data)
 
 
 
