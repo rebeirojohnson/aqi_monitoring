@@ -9,6 +9,7 @@ import requests as req
 from bs4 import BeautifulSoup
 from .models import *
 import json
+from .pred import predict_aqi
 # Create your views here.
 
 @api_view(['GET'])
@@ -107,12 +108,13 @@ def add_attendence(request):
 		return Response("Invalid card")
 
 	
-@api_view(['GET'])
-def getdata(request,date):
-	print(date)
-	# date = data['date_time']
+@api_view(['POST'])
+def getdata(request):
+	data = request.data
+	date = data['date']
+	aqi = predict_aqi(date=date)
 	weather={
-		"aqi":"85"
+		"aqi":aqi
 	}
 	return Response(weather)
 
