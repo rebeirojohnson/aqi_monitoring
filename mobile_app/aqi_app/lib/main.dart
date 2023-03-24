@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-
-// import './view/location_screens.dart';
-
 import './screens/ui_page.dart';
 
 void main() {

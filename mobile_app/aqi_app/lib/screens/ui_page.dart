@@ -223,7 +223,7 @@ class _UiPageState extends State<UiPage> {
                             // onTap: reloadData,
                             onTap: () => Navigator.of(context).push(
                                 MaterialPageRoute(
-                                    builder: (context) => MyHomePage())),
+                                    builder: (context) => const MyHomePage())),
                             child: Container(
                               alignment: Alignment.center,
                               height: size.height * 0.07,
@@ -242,7 +242,8 @@ class _UiPageState extends State<UiPage> {
                             onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (buildrContext) => RadialGauge())),
+                                    builder: (buildrContext) =>
+                                        const RadialGauge())),
                             child: Container(
                               alignment: Alignment.center,
                               height: size.height * 0.07,

@@ -57,8 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     content: Text('Please verify address'),
                   ));
         }
-        // Navigator.of(context)
-        //     .push(MaterialPageRoute(builder: (_) => DispalyPage()));
+        
       }
 
       if (response.statusCode == 200) {
