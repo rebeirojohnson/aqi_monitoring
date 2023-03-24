@@ -1,14 +1,14 @@
 import joblib
 
-pm25_model = joblib.load('pkl_file/pm25.pkl')
-NO_model = joblib.load("pkl_file/no.pkl")
-NO2_model = joblib.load("pkl_file/no2.pkl")
-NOx_model = joblib.load("pkl_file/nox.pkl")
-Nh3_model = joblib.load("pkl_file/nh3.pkl")
-CO_model = joblib.load("pkl_file/co.pkl")
-SO2_model = joblib.load("pkl_file/so2.pkl")
-O3_model = joblib.load("pkl_file/o3.pkl")
-random_forest_model = joblib.load('pkl_file/random_forest_model.pkl')
+pm25_model = joblib.load('../pkl_file/pm25.pkl')
+NO_model = joblib.load("../pkl_file/no.pkl")
+NO2_model = joblib.load("../pkl_file/no2.pkl")
+NOx_model = joblib.load("../pkl_file/nox.pkl")
+Nh3_model = joblib.load("../pkl_file/nh3.pkl")
+CO_model = joblib.load("../pkl_file/co.pkl")
+SO2_model = joblib.load("../pkl_file/so2.pkl")
+O3_model = joblib.load("../pkl_file/o3.pkl")
+random_forest_model = joblib.load('../pkl_file/random_forest_model.pkl')
 
 def predict_aqi(date):
     # PM2.5,NO,NO2,NOx,NH3,CO,SO2,O3,AQI
