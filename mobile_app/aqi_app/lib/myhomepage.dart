@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import './models/weather_data.dart';
+
 import 'dart:convert';
 import './screens/displayPage.dart';
 
@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> getData() async {
     final url = 'http://${_controller.text}:8000/api/verify/';
-    const newurl = 'http://192.168.10.239:8000/api';
+    const newurl = 'http://127.0.0.1:8000/api/verify/';
     //const url = 'https://jsonplaceholder.typicode.com/albums';
     try {
       final response = await http.get(Uri.parse(url));
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print(e.toString());
       showDialog(
           context: context,
-          builder: (_) => AlertDialog(
+          builder: (_) => const AlertDialog(
                 content: Text('Please verify address'),
               ));
     }

@@ -1,6 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import './myhomepage.dart';
+import 'package:provider/provider.dart';
+// import './view/location_screens.dart';
+import './models/weahter_data.dart';
+import './screens/ui_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,12 +11,15 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+    return ChangeNotifierProvider(
+      create: (context) => WeatherData(),
+      child: MaterialApp(
+        theme: ThemeData(scaffoldBackgroundColor: const Color(0xff081b25)),
+        debugShowCheckedModeBanner: false,
+        home: UiPage(),
+      ),
     );
   }
 }
