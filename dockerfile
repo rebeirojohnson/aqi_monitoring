@@ -4,7 +4,13 @@ WORKDIR /django_app
 
 COPY . .
 
+RUN echo "$PWD"
+
 RUN ls
+RUN ls ..
+
+RUN pwd && ls
+
 
 RUN pip install -r requirments.txt
 
