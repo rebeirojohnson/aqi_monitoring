@@ -4,6 +4,8 @@ WORKDIR /django_app
 
 COPY . .
 
+RUN ls
+
 RUN pip install -r requirments.txt
 
 ENTRYPOINT ["python"] 
