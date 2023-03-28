@@ -1,10 +1,12 @@
 FROM python:3.10.6-buster
 
-WORKDIR /django_apps
+WORKDIR /
 
 COPY . .
 
 RUN pip install -r requirments.txt
+
+RUN cd django_app
 
 ENTRYPOINT ["python"] 
 
