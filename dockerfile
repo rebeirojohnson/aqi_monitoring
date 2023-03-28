@@ -2,10 +2,11 @@ FROM python:3.10.6-buster
 
 COPY . .
 
+RUN pip install -r requirments.txt
+
 WORKDIR /django_app
 
 
-RUN pip install -r requirments.txt
 
 ENTRYPOINT ["python"] 
 
