@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   discord:
-    image: docker.aqi
+    image: discord.aqi
     container_name: aqi_app
     ports:
       - "8000:8000"
