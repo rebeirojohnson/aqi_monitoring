@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> getData() async {
     final url = 'http://${_controller.text}:8000/api/verify/';
-    const newurl = 'http://127.0.0.1:8000/api/verify/';
+    //const newurl = 'http://127.0.0.1:8000/api/verify/';
     //const url = 'https://jsonplaceholder.typicode.com/albums';
     try {
       final response = await http.get(Uri.parse(url));
@@ -57,8 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     content: Text('Please verify address'),
                   ));
         }
-        // Navigator.of(context)
-        //     .push(MaterialPageRoute(builder: (_) => DispalyPage()));
+        
       }
 
       if (response.statusCode == 200) {
@@ -100,6 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,6 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       print(newValue);
                     },
                     decoration: InputDecoration(
+                        iconColor: Colors.white,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15)))),
               ),
@@ -153,15 +155,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            ElevatedButton(onPressed: postDate, child: Text('post')),
-            IconButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => DispalyPage()));
-                },
-                icon: const Icon(
-                  Icons.navigate_next,
-                )),
+            //ElevatedButton(onPressed: postDate, child: Text('post')),
+            // IconButton(
+            //     onPressed: () {
+            //       Navigator.of(context)
+            //           .push(MaterialPageRoute(builder: (_) => DispalyPage()));
+            //     },
+            //     icon: const Icon(
+            //       Icons.navigate_next,
+            //     )),
           ],
         ),
       ),

@@ -19,9 +19,7 @@ class _DispalyPageState extends State<DispalyPage> {
 
   void _saveForm() {
     final isValid = _formKey.currentState!.save();
-    // if (!isValid) {
-    //   return;
-    // }
+
     _formKey.currentState!.save();
     setState(
       () {

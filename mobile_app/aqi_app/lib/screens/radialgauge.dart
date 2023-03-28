@@ -43,7 +43,7 @@ class _RadialGaugeState extends State<RadialGauge> {
             ], annotations: <GaugeAnnotation>[
               GaugeAnnotation(
                   widget: Container(
-                      child: const Text('70.0',
+                      child: const Text('85',
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold))),
                   angle: 90,
