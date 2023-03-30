@@ -2,7 +2,7 @@ FROM python:3.10.6-buster
 
 COPY . .
 
-RUN pip install -r requirments.txt
+RUN pip install -r requirements.txt
 
 RUN python weather_prediction/model_training.py
 
