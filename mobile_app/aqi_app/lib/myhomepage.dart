@@ -31,7 +31,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> getData() async {
-    final url = 'http://${_controller.text}:8000/api/verify/';
+    const url = 'http://139.59.64.29:9999/api/verify/';
+    //final url = 'http://${_controller.text}:8000/api/verify/';
     //const newurl = 'http://127.0.0.1:8000/api/verify/';
     //const url = 'https://jsonplaceholder.typicode.com/albums';
     try {
@@ -57,7 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     content: Text('Please verify address'),
                   ));
         }
-        
       }
 
       if (response.statusCode == 200) {
@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> postDate() async {
-    const url = 'http://192.168.10.239:8000/api/get-weather/2022-09-31 11:00';
+    const url = 'http://192.168.10.239:8000/api/get-weather/2022-09-3111:00';
 
     //const url = 'https://jsonplaceholder.typicode.com/albums';
     try {

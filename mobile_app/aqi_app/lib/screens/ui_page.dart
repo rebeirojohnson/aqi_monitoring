@@ -1,3 +1,4 @@
+import 'package:aqi_app/testpage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../models/weather_info.dart';
@@ -223,7 +224,7 @@ class _UiPageState extends State<UiPage> {
                             // onTap: reloadData,
                             onTap: () => Navigator.of(context).push(
                                 MaterialPageRoute(
-                                    builder: (context) => const MyHomePage())),
+                                    builder: (context) => Testpage())),
                             child: Container(
                               alignment: Alignment.center,
                               height: size.height * 0.07,
