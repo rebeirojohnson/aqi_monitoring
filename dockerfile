@@ -4,6 +4,10 @@ COPY . .
 
 RUN pip install -r requirments.txt
 
+RUN python weather_prediction/model_training.py
+
+RUN python weather_prediction/modeltrainforapp.py
+
 WORKDIR /django_app
 
 
