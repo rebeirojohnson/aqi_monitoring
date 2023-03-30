@@ -111,7 +111,10 @@ def add_attendence(request):
 @api_view(['POST'])
 def getdata(request):
 	data = request.data
-	date = data['date']
+	date_string = data['date']
+	new_date = date_string.split(" ")[0]
+	date = int("".join(new_date.split("-")))
+	print(date)
 	aqi = predict_aqi(date=date)
 	weather={
 		"aqi":aqi

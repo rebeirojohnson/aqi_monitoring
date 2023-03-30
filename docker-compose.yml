@@ -1,0 +1,13 @@
+version: '3.6'
+services:
+  discord:
+    image: discord.aqi
+    container_name: aqi_app
+    ports:
+      - "9999:8000"
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    expose:
+      - "8000"
+

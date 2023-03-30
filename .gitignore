@@ -14,6 +14,7 @@ __pycache__
 .history
 .svn/
 migrate_working_dir/
+.aqi-_venv
 
 # IntelliJ related
 *.iml
