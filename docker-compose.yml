@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   discord:
-    image: discord.aqi
+    image: docker.aqi
     container_name: aqi_app
     ports:
       - "9999:8000"
@@ -10,4 +10,15 @@ services:
       - "host.docker.internal:host-gateway"
     expose:
       - "8000"
+      
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
 
