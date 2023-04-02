@@ -13,8 +13,11 @@ services:
     tty: true
     networks:
       - network
-    
 
-  
+networks:
+  network:
+    name: network
+    external: true
+      
 
 
