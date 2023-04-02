@@ -11,6 +11,8 @@ services:
     expose:
       - "8000"
     tty: true
+    networks:
+      - network
     
 
   app:
@@ -23,4 +25,14 @@ services:
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
+
+    networks:
+      - network
+
+networks:
+  network:
+    name: network
+    external: true
+      
+
 
