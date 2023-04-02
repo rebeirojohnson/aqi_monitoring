@@ -155,15 +155,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            //ElevatedButton(onPressed: postDate, child: Text('post')),
-            // IconButton(
-            //     onPressed: () {
-            //       Navigator.of(context)
-            //           .push(MaterialPageRoute(builder: (_) => DispalyPage()));
-            //     },
-            //     icon: const Icon(
-            //       Icons.navigate_next,
-            //     )),
           ],
         ),
       ),

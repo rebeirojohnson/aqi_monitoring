@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './screens/ui_page.dart';
+import './screens/get_started.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xff081b25)),
       debugShowCheckedModeBanner: false,
-      home: UiPage(),
+      home: const GetStarted(),
     );
   }
 }

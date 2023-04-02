@@ -2,14 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-class Testpage extends StatelessWidget {
-  DateTime dateTime = DateTime.now();
+class Testpage extends StatefulWidget {
+  @override
+  State<Testpage> createState() => _TestpageState();
+}
+
+class _TestpageState extends State<Testpage> {
+  DateTime? dateTime = DateTime.now();
+  String formatted = 'Choose date';
+  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+  void checkDate() {
+    showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2000),
+            lastDate: DateTime(2060))
+        .then((value) {
+      setState(() {
+        // dateTime = value;
+
+        formatted = formatter.format(value!);
+      });
+    });
+    // dateTime = formatted as DateTime?;
+    print(formatted);
+  }
 
   Future<void> getData() async {
     try {
-      const url = 'http://139.59.64.29:9999/api/get-weather/';
+      //const url = 'http://139.59.64.29:9999/api/get-weather/';
+      const url = 'http://www.greedandfear.fun:9999/api/get-weather/';
       // var response = await http.get(Uri.parse(url));
-      var response = await http.post(Uri.parse(url), body: {"date": ""});
+      var response = await http.post(Uri.parse(url), body: {"date": formatted});
       print(response.body.toString());
     } catch (e) {
       print(e.toString());
@@ -17,35 +41,38 @@ class Testpage extends StatelessWidget {
   }
 
   void printVal() {
-    print(DateFormat.YEAR_MONTH_DAY);
+    print(DateFormat);
   }
 
   @override
   Widget build(BuildContext context) {
-    void checkDate() {
-      showDatePicker(
-          context: context,
-          initialDate: DateTime.now(),
-          firstDate: DateTime(2000),
-          lastDate: DateTime(2060));
-      print(DateTime.now());
-    }
-
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ElevatedButton(
-              onPressed: printVal,
-              child: const Text('Get Data'),
-            ),
-            ElevatedButton(
-              onPressed: getData,
-              child: const Text('Get Data'),
-            ),
-          ],
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Text(formatted),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: printVal,
+                    child: const Text('Print Data'),
+                  ),
+                  ElevatedButton(
+                    onPressed: getData,
+                    child: const Text('Get Data'),
+                  ),
+                  ElevatedButton(
+                    onPressed: checkDate,
+                    child: const Text('Show Date'),
+                  ),
+                ],
+              ),
+              Text(formatter.format(dateTime!)),
+            ],
+          ),
         ),
       ),
     );

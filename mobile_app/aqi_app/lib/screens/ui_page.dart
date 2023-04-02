@@ -1,10 +1,8 @@
-import 'package:aqi_app/testpage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../models/weather_info.dart';
 import 'dart:convert';
 import './radialgauge.dart';
-import '../myhomepage.dart';
 
 class UiPage extends StatefulWidget {
   @override
@@ -221,10 +219,7 @@ class _UiPageState extends State<UiPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            // onTap: reloadData,
-                            onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) => Testpage())),
+                            onTap: reloadData,
                             child: Container(
                               alignment: Alignment.center,
                               height: size.height * 0.07,
@@ -233,7 +228,7 @@ class _UiPageState extends State<UiPage> {
                                   color: Colors.purpleAccent,
                                   borderRadius: BorderRadius.circular(15)),
                               child: const Text(
-                                'Connect',
+                                'Reload Data',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18),
                               ),
@@ -260,21 +255,6 @@ class _UiPageState extends State<UiPage> {
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: reloadData,
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: size.height * 0.07,
-                        width: size.width * 0.37,
-                        decoration: BoxDecoration(
-                            color: Colors.purpleAccent,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: const Text(
-                          'Reload Data',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
                       ),
                     ),
                   ],
