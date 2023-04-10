@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   discord:
-    image: discord.aqi
+    image: docker.aqi
     container_name: aqi_app
     ports:
       - "9999:8000"
@@ -10,4 +10,14 @@ services:
       - "host.docker.internal:host-gateway"
     expose:
       - "8000"
+    tty: true
+    networks:
+      - network 
+
+networks:
+  network:
+    name: network
+    external: true
+      
+
 
