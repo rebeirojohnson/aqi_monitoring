@@ -115,9 +115,14 @@ def getdata(request):
 	new_date = date_string.split(" ")[0]
 	date = int("".join(new_date.split("-")))
 	print(date)
-	aqi = predict_aqi(date=date)
+	aqi,data_array = predict_aqi(date=date)
 	weather={
-		"aqi":aqi
+		"aqi":aqi,
+		"pm":round(data_array[0]),
+		"no":round(data_array[2]),
+		"no2":round(data_array[3]),
+		"so2":round(data_array[6])
+
 	}
 	return Response(weather)
 

@@ -12,7 +12,7 @@ services:
       - "8000"
     tty: true
     networks:
-      - network
+      - network 
 
 networks:
   network:
