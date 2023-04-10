@@ -1,9 +1,29 @@
-import requests
+import requests as req
+import 
 
-url = "http://139.59.64.29:9999/api/get-weather/"
-# url = "http://127.0.0.1:8000/api/get-weather/"
+result = req.get(url="https://api.weatherapi.com/v1/current.json?key=971d434f39f1440d8be142810231803&q=13.08,74.98%20&aqi=nohttp://api.weatherapi.com/v1/current.json?key=971d434f39f1440d8be142810231803&q=mudbidri%20&aqi=no")
+weather_data = json.loads(result.content)
 
-# data = requests.post(url=url,json={"date":"2022-11-06"})
-data = requests.post(url=url,json={"date":"2023-03-30 22:28:46.356308"})
+name = weather_data['location']
+place = name['name']
 
-print(data.content)
+current_weather = weather_data['current']
+humidity = current_weather['humidity']
+
+temp_c = current_weather['temp_c']
+condition = current_weather['condition']
+
+text= condition['text']
+
+icon= condition['icon']
+
+
+data = {
+"name": place,
+"temperature": temp_c,
+"icon": icon,
+"text": text,
+"humidity":humidity,
+}
+
+print(data)

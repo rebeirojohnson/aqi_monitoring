@@ -7,6 +7,8 @@ from .serializers import *
 # from .db_con import processQuery,engine
 import requests as req
 from bs4 import BeautifulSoup
+
+import datetime
 from .models import *
 import json
 from .pred import predict_aqi
@@ -127,11 +129,8 @@ def getdata(request):
 	return Response(weather)
 
 @api_view(['GET'])
-def verify(request):
+def get_today_weather(request):
 	result = req.get(url="https://api.weatherapi.com/v1/current.json?key=971d434f39f1440d8be142810231803&q=13.08,74.98%20&aqi=nohttp://api.weatherapi.com/v1/current.json?key=971d434f39f1440d8be142810231803&q=mudbidri%20&aqi=no")
-	# soup = BeautifulSoup(result.content, 'lxml')
-	# text_json = soup.text
-	# data = json.loads(text_json)
 	weather_data = json.loads(result.content)
 
 	name = weather_data['location']
@@ -147,16 +146,23 @@ def verify(request):
 
 	icon= condition['icon']
 
+	now = datetime.datetime.now() # current date and time
+
+	date_time = int(now.strftime("%Y%m%d"))
+	print(type(date_time))
+	aqi,weather = predict_aqi(date_time)
+	# print(a,b)
 
 	data = {
     "name": place,
-    "temperature": temp_c,
+    "aqi": aqi,
     "icon": icon,
-    "text": text,
-    "humidity":humidity,
+    'text':"AQI",
+    "pmsecond":round(weather[0]),
+    "sosecond":round(weather[6]),
   }
-	return Response(f"name:{place}")
-	# return JsonResponse(data)
+	# return Response()
+	return JsonResponse(data)
 
 
 
