@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import '../data/api_values.dart';
@@ -20,6 +19,10 @@ class _RadialGaugeState extends State<RadialGauge> {
   String formatted = '';
   String aqiVal = '';
   double needlevalue = 0;
+  String pm = '';
+  String no2 = '';
+  String no = '';
+  String so2 = '';
 
   void checkDate() {
     showDatePicker(
@@ -44,14 +47,30 @@ class _RadialGaugeState extends State<RadialGauge> {
       const url = 'http://www.greedandfear.fun:9999/api/get-weather/';
       var response = await http.post(Uri.parse(url), body: {"date": formatted});
       var responseData = json.decode(response.body);
-      AqiApi apiData = AqiApi(aqi: responseData['aqi'].toString());
+      AqiApi apiData = AqiApi(
+        aqi: responseData['aqi'].toString(),
+        pm: responseData['pm'].toString(),
+        no: responseData['no'].toString(),
+        no2: responseData['no2'].toString(),
+        so2: responseData['so2'].toString(),
+      );
+
       setState(() {
         needlevalue = double.parse(apiData.aqi);
       });
 
       print(responseData);
+      // to display values in app
       aqiVal = apiData.aqi;
+      pm = apiData.pm;
+      no = apiData.no;
+      no2 = apiData.no2;
+      so2 = apiData.no2;
       print(aqiVal);
+      print(pm);
+      print(no);
+      print(no2);
+      print(so2);
     } catch (e) {
       showDialog(
           context: context,
@@ -99,7 +118,7 @@ class _RadialGaugeState extends State<RadialGauge> {
             children: [
               Text(
                 'Today date: ${dateformater.format(dateTime!)} ',
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
               const SizedBox(height: 60),
               Text(
@@ -134,7 +153,43 @@ class _RadialGaugeState extends State<RadialGauge> {
                       positionFactor: 0.5)
                 ])
               ])),
-              const SizedBox(height: 60),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'pm: $pm',
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w700),
+                      ),
+                      Text(
+                        'no: $no',
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w700),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'no2: $no2',
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w700),
+                      ),
+                      Text(
+                        'so2: $so2',
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w700),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              const SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
