@@ -28,4 +28,5 @@ import requests as req
 
 # print(data)
 
-response = req.post("http://127.0.0.1:8000/api/add_weather",json={"light":"1.00","humidity":"63.00","temperature":"31.00","moisture":"666.00"})
+response = req.post("http://www.greedandfear.fun:9999/api/add_weather",json={"light":"1.00","humidity":"263.00","temperature":"31.00","moisture":"666.00"})
+# response = req.post("http://127.0.0.1:8000/api/add_weather",json={"light":"1.00","humidity":"63.00","temperature":"31.00","moisture":"666.00"})

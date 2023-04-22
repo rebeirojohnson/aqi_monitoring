@@ -177,6 +177,7 @@ def get_today_weather(request):
 @api_view(['POST'])
 def add_iot_weather(request):
 	# {"light":"0.00","humidity":"63.00","temperature":"31.00","moisture":"666.00"}
+	# {\"light\":\"0.00\",\"humidity\":\"63.00\",\"temperature\":\"31.00\",\"moisture\":\"666.00\"}
 	data = request.data
 	light = data['light']
 	humidity = data['humidity']
