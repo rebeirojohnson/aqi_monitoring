@@ -124,7 +124,7 @@ def getdata(request):
 
 	op = [aqi - value,aqi + value]
 
-	new_aqi = random.choice(op)
+	new_aqi = int(random.choice(op))
 
 	weather={
 		"aqi":new_aqi,
