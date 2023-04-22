@@ -7,10 +7,11 @@ from .serializers import *
 # from .db_con import processQuery,engine
 import requests as req
 from bs4 import BeautifulSoup
-
+import random
 import datetime
 from .models import *
 import json
+import numpy as np
 from .pred import predict_aqi
 # Create your views here.
 
@@ -118,11 +119,19 @@ def getdata(request):
 	date = int("".join(new_date.split("-")))
 	print(date)
 	aqi,data_array = predict_aqi(date=date)
+
+	value = random.random() * 100
+
+	op = [aqi - value,aqi + value]
+
+	new_aqi = random.choice(op)
+
 	weather={
-		"aqi":aqi,
+		"aqi":new_aqi,
 		"pm":round(data_array[0]),
 		"no":round(data_array[2]),
 		"no2":round(data_array[3]),
+		"ch4":round(data_array[4]),
 		"so2":round(data_array[6])
 
 	}
@@ -154,7 +163,7 @@ def get_today_weather(request):
 	# print(a,b)
 
 	data = {
-    "name": place,
+    "name": "Moodbidri",
     "aqi": aqi,
     "icon": icon,
     'text':"AQI",
