@@ -160,12 +160,12 @@ class _RadialGaugeState extends State<RadialGauge> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        'pm: $pm',
+                        'PM2.5: $pm',
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        'no: $no',
+                        'NO: $no',
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),
@@ -176,12 +176,12 @@ class _RadialGaugeState extends State<RadialGauge> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        'no2: $no2',
+                        'NO2: $no2',
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        'so2: $so2',
+                        'SO2: $so2',
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),

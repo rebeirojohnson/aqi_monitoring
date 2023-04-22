@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import '../models/weather_info.dart';
 import 'dart:convert';
 import './radialgauge.dart';
+import '../data/api_values.dart';
+import 'package:intl/intl.dart';
 
 class UiPage extends StatefulWidget {
   @override
@@ -18,38 +20,98 @@ class _UiPageState extends State<UiPage> {
   String humidity = '';
   String cond = '';
   String wind_dir = '';
+  String pm = '';
+  String no2 = '';
+  String no = '';
+  String so2 = '';
+  String formatted = '';
+
   var isLoading = false;
+
+  Future<void> getData() async {
+    try {
+      final DateFormat formatter = DateFormat('yyyy-MM-dd');
+      formatted = formatter.format(DateTime.now());
+      //const url = 'http://139.59.64.29:9999/api/get-weather/';
+      const url = 'http://www.greedandfear.fun:9999/api/get-weather/';
+      var response = await http.post(Uri.parse(url), body: {"date": formatted});
+      var responseData = json.decode(response.body);
+
+      AqiApi apiData = AqiApi(
+        aqi: responseData['aqi'].toString(),
+        pm: responseData['pm'].toString(),
+        no: responseData['no'].toString(),
+        no2: responseData['no2'].toString(),
+        so2: responseData['so2'].toString(),
+      );
+
+      print(responseData);
+      // to display values in app
+
+      pm = apiData.pm;
+      no = apiData.no;
+      no2 = apiData.no2;
+      so2 = apiData.no2;
+
+      print(pm);
+      print(no);
+      print(no2);
+      print(so2);
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Something went wrong'),
+              actions: [
+                GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Ok",
+                      style: TextStyle(color: Colors.blue, fontSize: 16),
+                    ),
+                  ),
+                )
+              ],
+            );
+          });
+      print(e.toString());
+    }
+  }
 
   List<WeatherInfo> weatherData = [];
 
   Future<List<WeatherInfo>> getRequest() async {
     try {
-      final response = await http.get(Uri.parse(
-          'https://api.weatherapi.com/v1/current.json?key=971d434f39f1440d8be142810231803&q=13.08,74.98%20&aqi=nohttp://api.weatherapi.com/v1/current.json?key=971d434f39f1440d8be142810231803&q=mudbidri%20&aqi=no'));
+      final response = await http.get(
+          Uri.parse('http://www.greedandfear.fun:9999/api/today-weather/'));
       var responseData = json.decode(response.body);
       print(responseData);
-      print(responseData['current']['temp_c']);
 
       WeatherInfo weaDatas = WeatherInfo(
-        name: responseData['location']['name'],
-        country: responseData['location']['country'],
-        iconImage: responseData['current']['condition']['icon'],
-        temp_c: responseData['current']['temp_c'].toString(),
-        humidity: responseData['current']['humidity'].toString(),
-        cond: responseData['current']['condition']['text'],
-        wind_dir: responseData['current']['wind_dir'],
+        name: responseData['name'],
+        temp_c: responseData['aqi'].toString(),
+        humidity: responseData['sosecond'].toString(),
+        cond: responseData['text'],
+        wind_dir: responseData['pmsecond'].toString(),
       );
+      final DateFormat formatter = DateFormat('yyyy-MM-dd');
+      formatted = formatter.format(DateTime.now());
 
       name = weaDatas.name;
-      country = weaDatas.country;
+
       temp_c = weaDatas.temp_c;
-      iconImage = 'http:${weaDatas.iconImage}';
 
       humidity = weaDatas.humidity;
       cond = weaDatas.cond;
       wind_dir = weaDatas.wind_dir;
 
       weatherData.add(weaDatas);
+      print(temp_c);
+      print(cond);
+      print(wind_dir);
     } catch (e) {
       print(e.toString());
     }
@@ -108,9 +170,9 @@ class _UiPageState extends State<UiPage> {
                                   ),
                                   //DateTime.
                                   Text(
-                                    DateTime.now().toString(),
+                                    formatted,
                                     style: const TextStyle(
-                                        fontSize: 15, color: Colors.white),
+                                        fontSize: 16, color: Colors.white),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -122,8 +184,9 @@ class _UiPageState extends State<UiPage> {
                                           borderRadius:
                                               BorderRadius.circular(12),
                                           color: Colors.transparent),
-                                      child: Image.network(
-                                        iconImage,
+                                      child: Image.asset(
+                                        'assets/icons/clouds.png',
+                                        color: Colors.white,
                                         fit: BoxFit.cover,
                                       )),
                                   Text(
@@ -137,7 +200,7 @@ class _UiPageState extends State<UiPage> {
                                     height: 5,
                                   ),
                                   Text(
-                                    '$temp_c° C',
+                                    temp_c,
                                     style: const TextStyle(
                                         fontSize: 60,
                                         color: Colors.white,
@@ -169,7 +232,7 @@ class _UiPageState extends State<UiPage> {
                                             height: 5,
                                           ),
                                           const Text(
-                                            'Humdity',
+                                            'Sulfur',
                                             style: TextStyle(
                                                 fontSize: 20,
                                                 color: Colors.white,
@@ -198,7 +261,7 @@ class _UiPageState extends State<UiPage> {
                                             height: 5,
                                           ),
                                           const Text(
-                                            'Wind Direction',
+                                            'PM2.5',
                                             style: TextStyle(
                                                 fontSize: 20,
                                                 color: Colors.white,
@@ -228,7 +291,7 @@ class _UiPageState extends State<UiPage> {
                                   color: Colors.purpleAccent,
                                   borderRadius: BorderRadius.circular(15)),
                               child: const Text(
-                                'Reload Data',
+                                'GET WEATHER',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18),
                               ),
