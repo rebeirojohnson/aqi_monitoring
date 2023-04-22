@@ -15,5 +15,7 @@ urlpatterns = [
 	path('add-attendance/', views.add_attendence, name="student_list"),
 	path('today-weather/', views.get_today_weather, name="get_today_weather"),
 	path('get-weather/', views.getdata, name="getdata"),
+    
+	path('add_weather',views.add_iot_weather,name="Add weather")
 	# path('verify/', views.verify, name="verify"),
 ]

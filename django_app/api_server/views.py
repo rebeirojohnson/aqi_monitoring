@@ -13,6 +13,7 @@ from .models import *
 import json
 import numpy as np
 from .pred import predict_aqi
+import requests
 # Create your views here.
 
 @api_view(['GET'])
@@ -173,5 +174,36 @@ def get_today_weather(request):
 	# return Response()
 	return JsonResponse(data)
 
+@api_view(['POST'])
+def add_iot_weather(request):
+	# {"light":"0.00","humidity":"63.00","temperature":"31.00","moisture":"666.00"}
+	data = request.data
+	light = data['light']
+	humidity = data['humidity']
+	temperature = data['temperature']
+	moisture = data['moisture']
+	
+	try:		
+		telegram_chat_id = "@weather845173"
 
+		telegram_bot_id = "bot6236663076:AAGct2VT2I3j9rsY9ja-KANqJbbSLhEHWB0"
 
+		print(int(float(light)))
+		if int(float(light)) == 1:
+			message = f"The Present temprature is {temperature} and the humidity in Moodbidri is {humidity}\nThe Soil moisture is {moisture} and it is dark outside"
+		else:
+			message = f"The Present temprature is {temperature} and the humidity in Moodbidri is {humidity}\nThe Soil moisture is {moisture} and it is bright outside"
+
+		teleurl = "https://api.telegram.org/"+telegram_bot_id+"/sendMessage"
+		print(teleurl)
+		data = {
+			"chat_id": telegram_chat_id,
+			"text": message
+		}
+		print(data)
+		requests.post(teleurl, params=data)
+		return JsonResponse({"message":"Sucess"}) 
+
+	except Exception as e:
+		print(e)
+		return JsonResponse({"message":"Fail"}) 
