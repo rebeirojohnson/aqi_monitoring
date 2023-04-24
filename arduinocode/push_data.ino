@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-#define SERVER_IP "192.168.203.239:8000"
+#define SERVER_IP "68.183.82.68:9999"
 
 #ifndef STASSID
 #define STASSID "johnson"

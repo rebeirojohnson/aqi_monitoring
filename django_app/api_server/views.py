@@ -121,14 +121,8 @@ def getdata(request):
 	print(date)
 	aqi,data_array = predict_aqi(date=date)
 
-	value = random.random() * 100
-
-	op = [aqi - value,aqi + value]
-
-	new_aqi = int(random.choice(op))
-
 	weather={
-		"aqi":new_aqi,
+		"aqi":aqi,
 		"pm":round(data_array[0]),
 		"no":round(data_array[2]),
 		"no2":round(data_array[3]),
