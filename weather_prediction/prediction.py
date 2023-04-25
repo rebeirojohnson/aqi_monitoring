@@ -30,9 +30,11 @@ def predict_aqi(date):
     prediction_array.append(val7[0])
     prediction_array.append(val8[0])
     print()
+    print(prediction_array)
     # print([val1[0],val2[0],val3[0],val4[0],val5[0],val6[0],val7[0]])
     aqi = random_forest_model.predict([prediction_array])
     return int(aqi[0])
 
 #448
-# print(predict_aqi(20230319))
+
+print(predict_aqi(20240319))

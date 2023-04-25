@@ -18,7 +18,6 @@ ridge_model = joblib.load('../pkl_file/ridge_model.pkl')
 
 start,stop = 0,10
 model_name = "Random Forest"
-print(x_test[start:stop])
 y_pred = random_forest_model.predict(x_test[start:stop])
 print(f"Accuracy of {model_name} is {round(r2_score(y_test[start:stop],y_pred)*100,3)}%")
 plt.scatter(x_test[start:stop,1],y_test[start:stop],c='red',label='original test values')
