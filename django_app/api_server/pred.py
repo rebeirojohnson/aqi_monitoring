@@ -36,3 +36,16 @@ def predict_aqi(date):
 
 #448
 # print(predict_aqi(20230319))
+aqi,data_array = predict_aqi(date=20230319)
+
+weather={
+    "aqi":aqi,
+    "pm":round(data_array[0]),
+    "no":round(data_array[2]),
+    "no2":round(data_array[3]),
+    "ch4":round(data_array[4]),
+    "so2":round(data_array[6])
+
+}
+
+print(weather)
