@@ -10,6 +10,9 @@ RUN python weather_prediction/modeltrainforapp.py
 
 WORKDIR /django_app
 
+RUN python manage.py makemigrations
+
+RUN python manage.py migrate
 
 ENTRYPOINT ["python"] 
 
