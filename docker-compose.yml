@@ -13,11 +13,6 @@ services:
     tty: true
     networks:
       - network 
-    depends_on:
-      - migration
-  migration:
-    image: docker.aqi
-    command: python manage.py migrate --noinput
 
 networks:
   network:
