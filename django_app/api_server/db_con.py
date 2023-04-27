@@ -8,8 +8,15 @@ password = r"tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ"
 db = "test_db"
 port = 5432
 
+connect_url = f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{db}"
+
+test_url = "postgresql+psycopg2://johnson:tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ@dpg-cftdlharrk0c835ilaj0-a.oregon-postgres.render.com:5432/test_db"
+print("connect_url")
+print(connect_url)
+print("test_url")
+print(test_url)
 #Creating a cursor object using the cursor() method
-engine = create_engine(f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{db}")
+engine = create_engine(test_url)
 engine = engine.connect()
 
 def processQuery(query: str) -> pd.DataFrame:
