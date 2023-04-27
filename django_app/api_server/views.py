@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 import random
 import datetime
 from .models import *
+from sqlalchemy import text
 import json
 import numpy as np
 from .pred import predict_aqi
@@ -94,22 +95,23 @@ def add_attendence(request):
 	tag_id=data['tagid']
 	query = f"SELECT sd.usn,sd.name FROM public.api_server_student_details as sd  where student_id = '{tag_id}'"
 	df = processQuery(query)
-	if df.empty:
-		return Response("Invalid card")
-	
-	usn  = df['usn'][0]
-	name  = df['name'][0]
-	json_string = '{"usn":"'+usn+'"}'
-	json_string = json.loads(json_string)
-	serializer = Attendance_serializer(data=json_string)
-	if serializer.is_valid():
-		print("valid")
-		serializer.save()
-		return Response(name)
-	else:
-		print(serializer.errors)
+	print(df)
+	try:
+		if df.empty:
+			return Response("Invalid card")
+		else:
+			usn  = df['usn'][0]
+			name  = df['name'][0]
+			print("valid")
+			query = f"""INSERT INTO public.api_server_attendance_details (usn,attendence_time)
+		VALUES ('{usn}','{datetime.datetime.now()}')"""
+			engine.execute(text(query))
+	except Exception as e:
+		print(e)
 		print("invalid")
-		return Response("Invalid card")
+
+		return Response("Data Added")
+	return Response(name)
 
 	
 @api_view(['POST'])
