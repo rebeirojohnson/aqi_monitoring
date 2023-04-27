@@ -4,7 +4,7 @@ import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import *
-# from .db_con import processQuery,engine
+from .db_con import processQuery,engine
 import requests as req
 from bs4 import BeautifulSoup
 import random
