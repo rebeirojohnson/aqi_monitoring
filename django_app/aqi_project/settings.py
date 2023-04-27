@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'test_db',
         'USER': 'johnson',
         'PASSWORD': 'tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ',
-        'HOST': '68.183.82.68',
+        'HOST': 'dpg-cftdlharrk0c835ilaj0-a.oregon-postgres.render.com',
         'PORT': '5432',
     }
 } 

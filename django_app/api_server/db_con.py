@@ -2,7 +2,7 @@ import psycopg2
 import pandas as pd
 from sqlalchemy import create_engine
 
-host = "68.183.82.68"
+host = "6dpg-cftdlharrk0c835ilaj0-a.oregon-postgres.render.com"
 username = "johnson"
 password = "tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ"
 db = "test_db"
