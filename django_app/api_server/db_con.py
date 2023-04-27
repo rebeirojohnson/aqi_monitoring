@@ -2,9 +2,9 @@ import psycopg2
 import pandas as pd
 from sqlalchemy import create_engine
 
-host = "127.0.0.1"
+host = "68.183.82.68"
 username = "johnson"
-password = "        "
+password = "tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ"
 db = "test_db"
 port = 5432
 
