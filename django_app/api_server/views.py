@@ -85,9 +85,10 @@ def create(request):
 
 @api_view(['GET'])
 def student_list(request):
-	dummy = Student_details.objects.all()
-	serializer = Studentdetailsserializer(dummy, many=True)
-	return Response(serializer.data)
+	query = f"SELECT * FROM public.api_server_student_details"
+	df = processQuery(query)
+	print(df)
+	return Response({"a":"b"})
 
 @api_view(['POST'])
 def add_attendence(request):
@@ -160,7 +161,7 @@ def get_today_weather(request):
 	# print(a,b)
 
 	data = {
-    "name": "Moodbidri",
+    "name": "Bangalore",
     "aqi": aqi,
     "icon": icon,
     'text':"AQI",
