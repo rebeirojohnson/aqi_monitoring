@@ -181,7 +181,7 @@ def add_iot_weather(request):
 	temperature = data['temperature']
 	moisture = data['moisture']
 
-	moisture_percentage = ( 100 - ( (int(moisture)/1023.00) * 100 ) )
+	moisture_percentage = ( 100 - ( (float(moisture)/1023.00) * 100 ) )
 	
 	try:		
 		telegram_chat_id = "@weather845173"
