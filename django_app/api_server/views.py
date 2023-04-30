@@ -3,6 +3,7 @@ from django.http import JsonResponse,HttpResponse
 import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+import rest_framework.request
 from .serializers import *
 from .db_con import processQuery,engine
 import requests as req
@@ -85,10 +86,26 @@ def create(request):
 
 @api_view(['GET'])
 def student_list(request):
-	query = f"SELECT * FROM public.api_server_student_details"
-	df = processQuery(query)
-	print(df)
-	return Response({"a":"b"})
+	tasks = Student_details.objects.all()#.order_by('-creation_time')
+	serializer = Studentdetailsserializer(tasks, many=True)
+	return Response(serializer.data)
+
+@api_view(['POST'])
+def get_attendance_by_date(request):
+	tasks = Attendance_details.objects.all()#.order_by('-creation_time')
+	serializer = Attendance_serializer(tasks, many=True)
+	return Response(serializer.data)
+
+
+@api_view(['POST'])
+def get_attendance_by_usn(request):
+	data = request.data
+	usn = data['usn']
+	tasks = Attendance_details.objects.filter(usn=usn)#.order_by('-creation_time')
+	serializer = Attendance_serializer(tasks, many=True)
+	return Response(serializer.data)
+
+
 
 @api_view(['POST'])
 def add_attendence(request):
@@ -204,6 +221,43 @@ def add_iot_weather(request):
 		}
 		print(data)
 		requests.post(teleurl, params=data)
+		return JsonResponse({"message":"Sucess"}) 
+
+	except Exception as e:
+		print(e)
+		return JsonResponse({"message":"Fail"}) 
+	
+@api_view(['GET'])
+def verify(request:rest_framework.request.Request):
+	# data = request.data
+	# light = data['light']
+	# humidity = int(float(data['humidity']))
+	# temperature = int(float(data['temperature']))
+	# moisture = data['moisture']
+
+	# moisture_percentage = ( 100 - ( (float(moisture)/1023.00) * 100 ) )
+
+	# moisture_percentage = round(moisture_percentage)
+	
+	try:		
+	# 	telegram_chat_id = "@weather845173"
+
+	# 	telegram_bot_id = "bot6236663076:AAGct2VT2I3j9rsY9ja-KANqJbbSLhEHWB0"
+
+	# 	print(int(float(light)))
+	# 	if int(float(light)) == 1:
+	# 		message = f"The Present temprature is {temperature}°C \nThe humidity is {humidity}%\nThe Soil moisture percentage is {moisture_percentage}% \nIt is dark outside"
+	# 	else:
+	# 		message = f"The Present temprature is {temperature}°C \nThe humidity is {humidity}%\nThe Soil moisture percentage is {moisture_percentage}% \nIt is bright outside"
+
+	# 	teleurl = "https://api.telegram.org/"+telegram_bot_id+"/sendMessage"
+	# 	print(teleurl)
+	# 	data = {
+	# 		"chat_id": telegram_chat_id,
+	# 		"text": message
+	# 	}
+	# 	print(data)
+	# 	requests.post(teleurl, params=data)
 		return JsonResponse({"message":"Sucess"}) 
 
 	except Exception as e:
