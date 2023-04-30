@@ -177,11 +177,13 @@ def add_iot_weather(request):
 	# {\"light\":\"0.00\",\"humidity\":\"63.00\",\"temperature\":\"31.00\",\"moisture\":\"666.00\"}
 	data = request.data
 	light = data['light']
-	humidity = data['humidity']
-	temperature = data['temperature']
+	humidity = int(data['humidity'])
+	temperature = int(data['temperature'])
 	moisture = data['moisture']
 
 	moisture_percentage = ( 100 - ( (float(moisture)/1023.00) * 100 ) )
+
+	moisture_percentage = round(moisture_percentage)
 	
 	try:		
 		telegram_chat_id = "@weather845173"
@@ -190,9 +192,9 @@ def add_iot_weather(request):
 
 		print(int(float(light)))
 		if int(float(light)) == 1:
-			message = f"The Present temprature is {temperature}°C \nThe humidity in Moodbidri is {humidity}%%\nThe Soil moisture percentage is {moisture_percentage} \nIt is dark outside"
+			message = f"The Present temprature is {temperature}°C \nThe humidity is {humidity}%\nThe Soil moisture percentage is {moisture_percentage}% \nIt is dark outside"
 		else:
-			message = f"The Present temprature is {temperature}°C \nThe humidity in Moodbidri is {humidity}%%\nThe Soil moisture percentage is {moisture_percentage} \nIt is bright outside"
+			message = f"The Present temprature is {temperature}°C \nThe humidity is {humidity}%\nThe Soil moisture percentage is {moisture_percentage}% \nIt is bright outside"
 
 		teleurl = "https://api.telegram.org/"+telegram_bot_id+"/sendMessage"
 		print(teleurl)
