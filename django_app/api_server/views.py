@@ -177,8 +177,8 @@ def add_iot_weather(request):
 	# {\"light\":\"0.00\",\"humidity\":\"63.00\",\"temperature\":\"31.00\",\"moisture\":\"666.00\"}
 	data = request.data
 	light = data['light']
-	humidity = int(data['humidity'])
-	temperature = int(data['temperature'])
+	humidity = int(float(data['humidity']))
+	temperature = int(float(data['temperature']))
 	moisture = data['moisture']
 
 	moisture_percentage = ( 100 - ( (float(moisture)/1023.00) * 100 ) )
