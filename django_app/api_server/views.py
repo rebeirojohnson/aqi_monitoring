@@ -92,7 +92,14 @@ def student_list(request):
 
 @api_view(['POST'])
 def get_attendance_by_date(request):
-	tasks = Attendance_details.objects.all()#.order_by('-creation_time')
+	data = request.data
+	start_date_string = data['start_date']
+	start_date = start_date_string.split(" ")[0]
+	end_date_string = data['end_date']
+	end_date = end_date_string.split(" ")[0]
+	today_min = datetime.datetime.strptime(start_date, '%Y-%m-%d').min
+	today_max = datetime.datetime.strptime(end_date, '%Y-%m-%d').max
+	tasks = Attendance_details.objects.filter(attendence_time__range=(today_min, today_max))#.order_by('-creation_time')
 	serializer = Attendance_serializer(tasks, many=True)
 	return Response(serializer.data)
 
@@ -121,7 +128,7 @@ def add_attendence(request):
 			usn  = df['usn'][0]
 			name  = df['name'][0]
 			print("valid")
-			query = f"""INSERT INTO public.api_server_attendance_details (usn,attendence_time)
+			query = f"""INSERT INTO public.api_server_attendance_details (usn,attendence_timedate)
 		VALUES ('{usn}','{datetime.datetime.now()}')"""
 			engine.execute(text(query))
 	except Exception as e:
