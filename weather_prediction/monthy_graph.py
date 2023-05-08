@@ -1,14 +1,19 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+from statistics import mean
+import numpy as np
+from sklearn.impute import SimpleImputer
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-df = pd.read_csv("../dataset/monthly_data.csv")
+df = pd.read_csv("../dataset/data_for_month.csv")
 
-year = 2023
+year = 2015
 
-new_df = df.loc[df['year'] == year]
+
+new_df = df.loc[df['Year'] == year]
+
 
 aqi_list = new_df['AQI'].to_list()
 ch4_list = new_df['ch4'].to_list()
@@ -19,7 +24,7 @@ coal_list = new_df['coal'].to_list()
 month = ['January','Febuary','March','April','May','June','July','August','September','October','November','December']
 
 # Comment to generate only gases
-# plt.plot(month,aqi_list,c='red',label='AQI')
+plt.plot(month,aqi_list,c='red',label='AQI')
 
 
 # Comment to generate only AQI
