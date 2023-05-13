@@ -16,7 +16,14 @@ class GetStarted extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('assets/get-started.png'),
+              Container(
+                  height: 350,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: ClipRRect(
+                      child: Image.asset(
+                    'assets/icons/get_started_2.png',
+                    fit: BoxFit.cover,
+                  ))),
               const SizedBox(
                 height: 30,
               ),

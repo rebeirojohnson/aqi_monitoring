@@ -23,6 +23,7 @@ class _RadialGaugeState extends State<RadialGauge> {
   String no2 = '';
   String no = '';
   String so2 = '';
+  String ch4 = '';
 
   void checkDate() {
     showDatePicker(
@@ -53,6 +54,7 @@ class _RadialGaugeState extends State<RadialGauge> {
         no: responseData['no'].toString(),
         no2: responseData['no2'].toString(),
         so2: responseData['so2'].toString(),
+        ch4: responseData['ch4'].toString(),
       );
 
       setState(() {
@@ -66,6 +68,7 @@ class _RadialGaugeState extends State<RadialGauge> {
       no = apiData.no;
       no2 = apiData.no2;
       so2 = apiData.no2;
+      ch4 = apiData.ch4;
       print(aqiVal);
       print(pm);
       print(no);
@@ -129,18 +132,56 @@ class _RadialGaugeState extends State<RadialGauge> {
               Container(
                   child: SfRadialGauge(axes: <RadialAxis>[
                 RadialAxis(minimum: 0, maximum: 500, ranges: <GaugeRange>[
-                  GaugeRange(startValue: 0, endValue: 50, color: Colors.green),
                   GaugeRange(
-                      startValue: 50, endValue: 100, color: Colors.yellow),
+                    startValue: 0,
+                    endValue: 50,
+                    color: Colors.green,
+                    label: "Good",
+                    labelStyle:
+                        const GaugeTextStyle(color: Colors.black, fontSize: 16),
+                  ),
                   GaugeRange(
-                      startValue: 100, endValue: 150, color: Colors.orange),
-                  GaugeRange(startValue: 150, endValue: 200, color: Colors.red),
+                    startValue: 50,
+                    endValue: 100,
+                    color: Colors.yellow,
+                    label: "Moderate",
+                    labelStyle:
+                        const GaugeTextStyle(color: Colors.black, fontSize: 15),
+                  ),
                   GaugeRange(
-                      startValue: 200, endValue: 300, color: Colors.purple),
+                    startValue: 100,
+                    endValue: 150,
+                    color: Colors.orange,
+                    label: "Sensitive",
+                    labelStyle:
+                        const GaugeTextStyle(color: Colors.black, fontSize: 16),
+                  ),
                   GaugeRange(
-                      startValue: 300,
-                      endValue: 500,
-                      color: const Color.fromARGB(255, 171, 78, 78)),
+                    startValue: 150,
+                    endValue: 200,
+                    color: Colors.red,
+                    label: "Unhealthy",
+                    labelStyle: const GaugeTextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                  GaugeRange(
+                    startValue: 200,
+                    endValue: 300,
+                    color: Colors.purple,
+                    label: "Not Good",
+                    labelStyle:
+                        const GaugeTextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  GaugeRange(
+                    startValue: 300,
+                    endValue: 500,
+                    color: const Color.fromARGB(255, 171, 78, 78),
+                    label: "Hazardous",
+                    labelStyle:
+                        const GaugeTextStyle(color: Colors.black, fontSize: 16),
+                  ),
                 ], pointers: <GaugePointer>[
                   NeedlePointer(value: needlevalue)
                 ], annotations: <GaugeAnnotation>[
@@ -160,12 +201,12 @@ class _RadialGaugeState extends State<RadialGauge> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        'PM2.5: $pm',
+                        'Coal gas: $pm',
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        'NO: $no',
+                        'Methane: $ch4',
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),
@@ -176,17 +217,22 @@ class _RadialGaugeState extends State<RadialGauge> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        'NO2: $no2',
+                        'Butane: $no2',
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        'SO2: $so2',
+                        'Sulfur: $so2',
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),
                     ],
-                  )
+                  ),
+                  Text(
+                    'CO: $no',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w700),
+                  ),
                 ],
               ),
               const SizedBox(height: 40),
