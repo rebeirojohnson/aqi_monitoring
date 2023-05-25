@@ -120,7 +120,6 @@ def add_attendence(request):
 	tag_id=data['tagid']
 	query = f"SELECT sd.usn,sd.name FROM public.api_server_student_details as sd  where student_id = '{tag_id}'"
 	df = processQuery(query)
-	print(df)
 	try:
 		if df.empty:
 			return Response("Invalid card")
@@ -131,6 +130,7 @@ def add_attendence(request):
 			query = f"""INSERT INTO public.api_server_attendance_details (usn,attendence_timedate)
 		VALUES ('{usn}','{datetime.datetime.now()}')"""
 			engine.execute(text(query))
+			print(query)
 	except Exception as e:
 		print(e)
 		print("invalid")
