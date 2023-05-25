@@ -17,6 +17,7 @@ import numpy as np
 from .pred import predict_aqi
 import requests
 # Create your views here.
+from sqlalchemy import create_engine
 
 @api_view(['GET'])
 def apiOverview(request):
@@ -124,12 +125,17 @@ def add_attendence(request):
 	if df.empty:
 		return Response("Invalid card")
 	else:
+		test_url = "postgresql+psycopg2://johnson:tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ@dpg-cftdlharrk0c835ilaj0-a.oregon-postgres.render.com:5432/test_db"
+
+		engine = create_engine(test_url)
+		engine = engine.connect()
 		usn  = df['usn'][0]
 		name  = df['name'][0]
 		print("valid")
 		query = f"""INSERT INTO public.api_server_attendance_details (usn,attendence_timedate)
-	VALUES ('{usn}','{datetime.datetime.now()}')"""
-		engine.execute(text(query))
+	VALUES ('{usn}','{datetime.datetime.now()}') RETURNING sl_no"""
+		data  = engine.execute(text(query)).fetchone()
+		print(data)
 		# engine = engine.connect()
 		# engine.execute(text(query))
 		print(query)
