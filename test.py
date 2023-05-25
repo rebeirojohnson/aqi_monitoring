@@ -37,12 +37,24 @@ test_url = "postgresql+psycopg2://johnson:tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ@dpg-c
 
 engine = create_engine(test_url)
 
-for exam_id in [1,2,3,4,5,6]:
-    for usn in ['4DM19EC036','4DM19EC018','4DM19EC047']:
+usn_list = []
+
+for i in range(1,52):
+    if i < 10:
+        j = f"0{i}"
+    else:
+        j = i
+    usn_list.append(f"4DM19EC0{j}")
+
+# 32 half
+for exam_id in range(71,127):
+    for usn in usn_list:
         marks = random.choice(range(1,30))
         query = f"""INSERT INTO public.student_perfomance(
 	 exam_id, usn, marks_scored, attendance_status)
-	VALUES ({exam_id},'{usn}',{marks},{True});"""
+ 	VALUES ({exam_id},'{usn}',{marks},{True});"""
         engine.execute(text(query))
-        
+        print(marks)
+    
+    print(f"Exam id {exam_id} done")
 

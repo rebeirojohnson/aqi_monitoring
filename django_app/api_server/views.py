@@ -135,7 +135,7 @@ def add_attendence(request):
 		print(e)
 		print("invalid")
 
-		return Response("Data Added")
+		return Response(str(e))
 	return Response(name)
 
 	
@@ -221,11 +221,11 @@ def add_iot_weather(request):
 			message = f"The Present temprature is {temperature}°C \nThe humidity is {humidity}%\nThe Soil moisture percentage is {moisture_percentage}% \nIt is bright outside"
 
 		teleurl = "https://api.telegram.org/"+telegram_bot_id+"/sendMessage"
-		print(teleurl)
 		data = {
 			"chat_id": telegram_chat_id,
 			"text": message
 		}
+		
 		print(data)
 		requests.post(teleurl, params=data)
 		return JsonResponse({"message":"Sucess"}) 

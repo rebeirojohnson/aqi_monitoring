@@ -24,7 +24,7 @@ coal_list = new_df['coal'].to_list()
 month = ['January','Febuary','March','April','May','June','July','August','September','October','November','December']
 
 # Comment to generate only gases
-plt.plot(month,aqi_list,c='red',label='AQI')
+# plt.plot(month,aqi_list,c='red',label='AQI')
 
 
 # Comment to generate only AQI
