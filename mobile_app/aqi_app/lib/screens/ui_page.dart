@@ -25,6 +25,7 @@ class _UiPageState extends State<UiPage> {
   String no = '';
   String so2 = '';
   String formatted = '';
+  String ch4 = '';
 
   var isLoading = false;
 
@@ -43,6 +44,7 @@ class _UiPageState extends State<UiPage> {
         no: responseData['no'].toString(),
         no2: responseData['no2'].toString(),
         so2: responseData['so2'].toString(),
+        ch4: responseData['ch4'].toString(),
       );
 
       print(responseData);
@@ -52,6 +54,7 @@ class _UiPageState extends State<UiPage> {
       no = apiData.no;
       no2 = apiData.no2;
       so2 = apiData.no2;
+      ch4 = apiData.ch4;
 
       print(pm);
       print(no);
@@ -178,6 +181,7 @@ class _UiPageState extends State<UiPage> {
                                     height: 10,
                                   ),
                                   Container(
+                                      padding: EdgeInsets.all(8),
                                       height: size.height * 0.2,
                                       width: size.width * 0.5,
                                       decoration: BoxDecoration(
@@ -185,8 +189,8 @@ class _UiPageState extends State<UiPage> {
                                               BorderRadius.circular(12),
                                           color: Colors.transparent),
                                       child: Image.asset(
-                                        'assets/icons/clouds.png',
-                                        color: Colors.white,
+                                        'assets/icons/fact-clouds.png',
+                                        //color: Colors.white,
                                         fit: BoxFit.cover,
                                       )),
                                   Text(
@@ -291,7 +295,7 @@ class _UiPageState extends State<UiPage> {
                                   color: Colors.purpleAccent,
                                   borderRadius: BorderRadius.circular(15)),
                               child: const Text(
-                                'GET WEATHER',
+                                'GET AQI LIVE',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18),
                               ),
