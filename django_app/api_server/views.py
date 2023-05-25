@@ -130,6 +130,8 @@ def add_attendence(request):
 			query = f"""INSERT INTO public.api_server_attendance_details (usn,attendence_timedate)
 		VALUES ('{usn}','{datetime.datetime.now()}')"""
 			engine.execute(text(query))
+			# engine = engine.connect()
+			# engine.execute(text(query))
 			print(query)
 	except Exception as e:
 		print(e)
