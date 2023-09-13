@@ -4,7 +4,7 @@ services:
     image: docker.aqi
     container_name: aqi_app
     ports:
-      - "9999:8000"
+      - "9998:8000"
     restart: always
     extra_hosts:
       - "host.docker.internal:host-gateway"
