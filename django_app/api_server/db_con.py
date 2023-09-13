@@ -15,7 +15,7 @@ try:
 
     engine = create_engine(connect_url)
 except:
-    continue
+    pass
 
 
 def processQuery(query: str) -> pd.DataFrame:
