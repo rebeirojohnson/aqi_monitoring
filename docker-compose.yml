@@ -12,11 +12,11 @@ services:
       - "8000"
     tty: true
     networks:
-      - network 
+      - greed_net 
 
 networks:
-  network:
-    name: network
+  greed_net:
+    name: greed_net
     external: true
       
 
