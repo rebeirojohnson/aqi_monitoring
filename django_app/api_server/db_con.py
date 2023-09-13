@@ -2,17 +2,20 @@ import psycopg2
 import pandas as pd
 from sqlalchemy import create_engine
 
-host = r"dpg-cftdlharrk0c835ilaj0-a.oregon-postgres.render.com"
+host = r"db.greedandfear.fun"
 username = r"johnson"
-password = r"tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ"
-db = "test_db"
+password = r"gtaVice@1a"
+db = "greed_and_fear_db"
 port = 5432
 
-connect_url = f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{db}"
+try:
+    connect_url = f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{db}"
 
-test_url = "postgresql+psycopg2://johnson:tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ@dpg-cftdlharrk0c835ilaj0-a.oregon-postgres.render.com:5432/test_db"
+    # test_url = "postgresql+psycopg2://johnson:tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ@dpg-cftdlharrk0c835ilaj0-a.oregon-postgres.render.com:5432/test_db"
 
-engine = create_engine(test_url)
+    engine = create_engine(connect_url)
+except:
+    continue
 
 
 def processQuery(query: str) -> pd.DataFrame:
