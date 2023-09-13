@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'aqi_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': r'test_db',
+        'NAME': r'greed_and_fear_db',
         'USER': r'johnson',
-        'PASSWORD': r'tMl2l7rHO6dQcP1xVBlmF2Wv3n0uBIcJ',
-        'HOST': r'dpg-cftdlharrk0c835ilaj0-a.oregon-postgres.render.com',
+        'PASSWORD': r'gtaVice@1a',
+        'HOST': r'db.greedandfear.fun',
         'PORT': '5432',
     }
 } 
